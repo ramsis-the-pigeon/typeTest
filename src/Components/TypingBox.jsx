@@ -17,6 +17,8 @@ function TypingBox() {
     const[incorrectChars, setIncorrectChars] = useState(0)
     const[missedChars, setMissedChars] = useState(0)
     const[extraChars, setExtraChars] = useState(0)
+    const[correctWords, setCorrectWords] = useState(0)
+
 
 
     const [wordsArray, setWordsArray] = useState(()=>{
@@ -82,13 +84,21 @@ function TypingBox() {
 
         if (e.keyCode === 32){
 
-            //
+            // logic for space
+
+            let correctCharsInWord = wordsSpanRef[currWordIndex].current.querySelectorAll('.correct')
+
+            if (correctCharsInWord.length === allCurrChars.length){
+                setCorrectWords(correctWords+1)
+            }
 
             if(allCurrChars.length<=currCharIndex){
                 allCurrChars[currCharIndex-1].classList.remove('current-right')
             }
             else{
+                setMissedChars(missedChars + (allCurrChars.length - currCharIndex))
                 allCurrChars[currCharIndex].classList.remove('current-right')
+
             }
             wordsSpanRef[currWordIndex+1].current.childNodes[0].className = "current"
 
@@ -158,6 +168,10 @@ function TypingBox() {
     //CALCULATING WPM
     const calculateWPM = ()=>{
         return Math.round((correctChars/5)/(testTime/60))
+    }
+
+    const calculateAcc = ()=>{
+        return Math.round((correctWords/currWordIndex) * 100)
     }
 
     const focusInput = ()=>{

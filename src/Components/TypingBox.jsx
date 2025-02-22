@@ -2,6 +2,8 @@ import { generate, count } from "random-words";
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import UpperMenu from "./UpperMenu";
 import { useTestMode } from "../Context/TesModeContext";
+import Stats from "./Stats";
+
 
 
 function TypingBox() {
@@ -191,7 +193,13 @@ function TypingBox() {
     return(
       <div>
         <UpperMenu countDown={countDown}/>
-        { (testEnd) ? (<h1>Test Over  </h1>):(<div className="type-box" onClick={focusInput}>
+        { (testEnd) ? (<Stats wpm={calculateWPM()} 
+                              accuracy={calculateAcc()} 
+                              correctChars={correctChars} 
+                              incorrectChars={incorrectChars}
+                              missedChars={missedChars}
+                              extraChars={extraChars}
+                              />):(<div className="type-box" onClick={focusInput}>
             
             <div className="words">
                 {

@@ -131,6 +131,15 @@ body {
     font-size: 30px;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    }
 
 `
+
 export default GlobalStyles

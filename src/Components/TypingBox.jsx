@@ -29,7 +29,7 @@ function TypingBox() {
 
     const [currWordIndex, setCurrWordIndex] = useState(0)
     const [currCharIndex, setCurrCharIndex] = useState(0)
-
+    const [graphData, setGraphData] = useState([])
     
 
     const wordsSpanRef = useMemo(()=>{
@@ -43,6 +43,14 @@ function TypingBox() {
         function timer() {
 
             setCountDown((latestCountDown)=>{
+                setCorrectChars((correctChars) => {
+
+                    setGraphData((graphData) =>{
+                        return[...graphData, [testTime-latestCountDown+1, 
+                            (correctChars / 5) / (testTime-latestCountDown+1)/60]]
+                    })
+                    return correctChars
+                })
                 if (latestCountDown === 1){
                     setTestEnd(true)
                     clearInterval(intervalId)
@@ -199,6 +207,7 @@ function TypingBox() {
                               incorrectChars={incorrectChars}
                               missedChars={missedChars}
                               extraChars={extraChars}
+                              graphData={graphData}
                               />):(<div className="type-box" onClick={focusInput}>
             
             <div className="words">

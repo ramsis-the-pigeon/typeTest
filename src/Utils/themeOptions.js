@@ -5,10 +5,10 @@ const darkTheme = {
     typeBoxText : 'grey',
 }
 const redTheme = {
-    label : 'Red',
-    background : 'red',
-    textColor : 'purple',
-    typeBoxText : 'pink',
+    label : 'dino',
+    background : 'white',
+    textColor : '#40d672',
+    typeBoxText : '#1d221f',
 }
 const fledging = {
     label : 'fledging',
@@ -16,8 +16,16 @@ const fledging = {
     textColor : '#fc6e83',
     typeBoxText : '#8e5568',
 }
+const tangerine = {
+    label : 'tangerine',
+    background : 'white',
+    textColor : '#fe5503',
+    typeBoxText : '#ff9562',
+}
+
 export const themeOptions = [
     {label: 'dark', value: darkTheme},
-    {label: 'red', value: redTheme},
-    {label: 'fledging', value: fledging}
+    {label: 'dino', value: redTheme},
+    {label: 'fledging', value: fledging},
+    {label: 'tangerine', value: tangerine}
 ]

@@ -1,13 +1,25 @@
+import Graph from "./Graph"
+
 const Stats  = (
   {wpm,
   accuracy,
   correctChars,
   incorrectChars,
   missedChars,
-  extraChars}
+  extraChars,
+  graphData
+}
 
 
 ) => {  
+
+  let timeSet = new Set()
+  const newGraph = graphData.filter(i => {
+    if(!timeSet.has(i[0])){
+      timeSet.add(i[0])
+      return i
+    }
+  })
 
   return (
     <div className="stats-box">
@@ -21,7 +33,7 @@ const Stats  = (
 
         </div>
         <div className="right-stats">
-          
+          <Graph graphData={newGraph}/>
         </div>
 
     </div>
